@@ -37,6 +37,18 @@ class ViewController: UIViewController {
         return label
     }()
     
+    private lazy var dontHaveAccount: UILabel = {
+        let label = UILabel()
+        label.text = "Dont have account ?"
+        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.textColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    
+    
     private lazy var userTextField: UITextField = {
         let tf = UITextField()
         tf.layer.cornerRadius = 20
@@ -233,6 +245,7 @@ class ViewController: UIViewController {
         view.addSubview(connectWithLabel)
         view.addSubview(faceBookButton)
         view.addSubview(twitterButton)
+        view.addSubview(dontHaveAccount)
     }
     
     private func setupLayout() {
@@ -276,7 +289,12 @@ class ViewController: UIViewController {
             twitterButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 200),
             twitterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             twitterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            twitterButton.heightAnchor.constraint(equalToConstant: 45)
+            twitterButton.heightAnchor.constraint(equalToConstant: 45),
+            
+            dontHaveAccount.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            dontHaveAccount.topAnchor.constraint(equalTo: faceBookButton.bottomAnchor, constant: 50),
+            dontHaveAccount.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -110),
+            
             
         ])
     }
