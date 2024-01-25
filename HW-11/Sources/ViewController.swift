@@ -9,24 +9,47 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    // MARK: Inits
-    
     // MARK: - UI
+    
+    private lazy var loginLabel: UILabel = {
+       let label = UILabel()
+        label.text = "Login"
+        label.font = .systemFont(ofSize: 30, weight: .bold)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    // MARK: Inits
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupHierarchy()
+        setupLayout()
     }
 
     // MARK: - Setups
     
     private func setupHierarchy() {
-        
+        view.backgroundColor = .cyan
+        view.addSubview(loginLabel)
     }
     
     private func setupLayout() {
-        
+        NSLayoutConstraint.activate([
+            loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginLabel.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+        ])
     }
 
     // MARK: - Actions
