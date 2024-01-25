@@ -47,7 +47,15 @@ class ViewController: UIViewController {
         return label
     }()
     
-    
+    private lazy var signUpLabel: UILabel = {
+        let label = UILabel()
+        label.text = "sign up"
+        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.textColor = .blue
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
     
     private lazy var userTextField: UITextField = {
         let tf = UITextField()
@@ -246,6 +254,7 @@ class ViewController: UIViewController {
         view.addSubview(faceBookButton)
         view.addSubview(twitterButton)
         view.addSubview(dontHaveAccount)
+        view.addSubview(signUpLabel)
     }
     
     private func setupLayout() {
@@ -295,7 +304,10 @@ class ViewController: UIViewController {
             dontHaveAccount.topAnchor.constraint(equalTo: faceBookButton.bottomAnchor, constant: 50),
             dontHaveAccount.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -110),
             
-            
+            signUpLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            signUpLabel.topAnchor.constraint(equalTo: twitterButton.bottomAnchor, constant: 49),
+            signUpLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -55),
+            signUpLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 255)
         ])
     }
     
