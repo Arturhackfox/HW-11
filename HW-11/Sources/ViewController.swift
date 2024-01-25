@@ -8,11 +8,20 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    // MARK: Inits
+
+    // MARK: - UI
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
+
+    // MARK: - Setups
+
+    // MARK: - Actions
 
 
 }
