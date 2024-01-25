@@ -69,6 +69,27 @@ class ViewController: UIViewController {
         return tf
     }()
     
+    private lazy var loginButton: UIButton = {
+       let button = UIButton()
+        var config = UIButton.Configuration.bordered()
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.layer.shadowOpacity = 0.3
+        
+        config.baseBackgroundColor = .purple
+        config.baseForegroundColor = .white
+        config.title = "Login"
+        config.cornerStyle = .capsule
+        
+        button.configuration = config
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
     // MARK: Inits
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -93,6 +114,7 @@ class ViewController: UIViewController {
         view.addSubview(loginLabel)
         view.addSubview(userTextField)
         view.addSubview(passwordTextField)
+        view.addSubview(loginButton)
     }
     
     private func setupLayout() {
@@ -102,20 +124,30 @@ class ViewController: UIViewController {
             
             userTextField.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 50),
             userTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            userTextField.heightAnchor.constraint(equalToConstant: 50),
+            userTextField.heightAnchor.constraint(equalToConstant: 45),
             userTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             userTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             
             passwordTextField.topAnchor.constraint(equalTo: userTextField.bottomAnchor, constant: 50),
             passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 50),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 45),
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            
+            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 50),
+            loginButton.heightAnchor.constraint(equalToConstant: 45),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
     }
     
     // MARK: - Actions
     
-    
+    @objc
+    private func loginTapped() {
+        print("Login tapped.")
+    }
+
 }
 
