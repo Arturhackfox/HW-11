@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     
     // MARK: Inits
-
+    
     // MARK: - UI
 
     // MARK: - Lifecycle
@@ -20,6 +20,14 @@ class ViewController: UIViewController {
     }
 
     // MARK: - Setups
+    
+    private func setupHierarchy() {
+        
+    }
+    
+    private func setupLayout() {
+        
+    }
 
     // MARK: - Actions
 
