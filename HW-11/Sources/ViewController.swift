@@ -21,6 +21,24 @@ class ViewController: UIViewController {
         return label
     }()
     
+    private lazy var userTextField: UITextField = {
+       let tf = UITextField()
+        tf.layer.cornerRadius = 20
+        tf.layer.borderWidth = 1
+        tf.placeholder = "Enter your username.."
+        tf.leftViewMode = UITextField.ViewMode.always
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let image = UIImage(systemName: "person")
+        imageView.image = image
+        tf.leftView = imageView
+        tf.tintColor = .gray
+        
+        
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        
+        return tf
+    }()
+    
     // MARK: Inits
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -43,12 +61,19 @@ class ViewController: UIViewController {
     private func setupHierarchy() {
         view.backgroundColor = .cyan
         view.addSubview(loginLabel)
+        view.addSubview(userTextField)
     }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
             loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginLabel.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            
+            userTextField.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 50),
+            userTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            userTextField.heightAnchor.constraint(equalToConstant: 50),
+            userTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            userTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
     }
 
