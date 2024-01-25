@@ -16,6 +16,22 @@ class ViewController: UIViewController {
         label.text = "Login"
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.textColor = .white
+        
+        label.layer.shadowOffset = .zero
+        label.layer.shadowOpacity = 0.3
+        label.layer.shadowRadius = 7
+        label.layer.shadowColor = UIColor.black.cgColor
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    private lazy var connectWithLabel: UILabel = {
+        let label = UILabel()
+        label.text = "or connect with"
+        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -144,6 +160,7 @@ class ViewController: UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
         view.addSubview(forgotPasswordButton)
+        view.addSubview(connectWithLabel)
     }
     
     private func setupLayout() {
@@ -169,10 +186,14 @@ class ViewController: UIViewController {
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             
-            forgotPasswordButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 50),
+            forgotPasswordButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15),
             forgotPasswordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             forgotPasswordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            forgotPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
+            forgotPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            
+            connectWithLabel.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 120),
+            connectWithLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
         ])
     }
     
