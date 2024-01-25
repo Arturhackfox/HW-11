@@ -49,11 +49,21 @@ class ViewController: UIViewController {
         tf.layer.shadowColor = UIColor.black.cgColor
         
         tf.leftViewMode = UITextField.ViewMode.always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        let image = UIImage(systemName: "person")
-        imageView.image = image
-        tf.leftView = imageView
-        tf.tintColor = .gray
+        tf.rightViewMode = UITextField.ViewMode.always
+        
+        let imageViewLeft = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let imageViewRight = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        
+        let imagePerson = UIImage(systemName: "person")
+        let imageCheckMark = UIImage(systemName: "checkmark.circle.fill")
+        
+        imageViewLeft.image = imagePerson
+        imageViewRight.image = imageCheckMark
+        imageViewLeft.tintColor = .gray
+        imageViewRight.tintColor = .systemGreen
+        
+        tf.leftView = imageViewLeft
+        tf.rightView = imageViewRight
         
         
         tf.translatesAutoresizingMaskIntoConstraints = false
