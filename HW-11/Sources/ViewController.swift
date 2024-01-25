@@ -90,6 +90,26 @@ class ViewController: UIViewController {
         return button
     }()
     
+    private lazy var forgotPasswordButton: UIButton = {
+        let button = UIButton()
+        var config = UIButton.Configuration.plain()
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 8
+        button.layer.shadowOpacity = 0.5
+        
+        config.baseForegroundColor = .white
+        config.title = "Forgot your password ?"
+        
+        
+        button.configuration = config
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(forgotPassTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
     // MARK: Inits
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -123,6 +143,7 @@ class ViewController: UIViewController {
         view.addSubview(userTextField)
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
+        view.addSubview(forgotPasswordButton)
     }
     
     private func setupLayout() {
@@ -146,7 +167,12 @@ class ViewController: UIViewController {
             loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 50),
             loginButton.heightAnchor.constraint(equalToConstant: 45),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            
+            forgotPasswordButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 50),
+            forgotPasswordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            forgotPasswordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            forgotPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
         ])
     }
     
@@ -155,6 +181,11 @@ class ViewController: UIViewController {
     @objc
     private func loginTapped() {
         print("Login tapped.")
+    }
+    
+    @objc
+    private func forgotPassTapped() {
+        print("recovering password.")
     }
     
     @objc
