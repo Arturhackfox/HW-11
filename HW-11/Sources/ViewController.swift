@@ -126,6 +126,36 @@ class ViewController: UIViewController {
         return button
     }()
     
+    private lazy var faceBookButton: UIButton = {
+        let button = UIButton()
+        var config = UIButton.Configuration.bordered()
+        
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.layer.shadowOpacity = 0.3
+        
+        if let originalImage = UIImage(named: "facebook"){
+            let resizedImage = resizeImage(originalImage, targetSize: CGSize(width: 40, height: 40))
+            
+            config.image = resizedImage
+        }
+        
+        config.baseBackgroundColor = .systemBlue
+        config.baseForegroundColor = .white
+        config.title = "Facebook"
+        config.cornerStyle = .capsule
+
+        button.imageView?.layer.cornerRadius = 20
+        button.imageView?.layer.masksToBounds = true
+        button.configuration = config
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(facebookTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
     // MARK: Inits
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -161,6 +191,7 @@ class ViewController: UIViewController {
         view.addSubview(loginButton)
         view.addSubview(forgotPasswordButton)
         view.addSubview(connectWithLabel)
+        view.addSubview(faceBookButton)
     }
     
     private func setupLayout() {
@@ -194,6 +225,12 @@ class ViewController: UIViewController {
             connectWithLabel.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 120),
             connectWithLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
+            faceBookButton.topAnchor.constraint(equalTo: connectWithLabel.bottomAnchor, constant: 30),
+            faceBookButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            faceBookButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            faceBookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -200),
+            faceBookButton.heightAnchor.constraint(equalToConstant: 45)
+            
         ])
     }
     
@@ -210,8 +247,29 @@ class ViewController: UIViewController {
     }
     
     @objc
+    private func facebookTapped() {
+        print("facebookTapped.")
+    }
+    
+    @objc
     private func viewDismiss() {
         view.endEditing(true)
+    }
+    
+    // Function to resize the image
+    private func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        let widthRatio = targetSize.width / size.width
+        let heightRatio = targetSize.height / size.height
+        let newSize = widthRatio > heightRatio ? CGSize(width: size.width * heightRatio, height: size.height * heightRatio) : CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
+        
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage ?? UIImage()
     }
     
     
