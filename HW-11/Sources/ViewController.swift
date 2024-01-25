@@ -70,7 +70,7 @@ class ViewController: UIViewController {
     }()
     
     private lazy var loginButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         var config = UIButton.Configuration.bordered()
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = .zero
@@ -105,9 +105,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupHierarchy()
         setupLayout()
+        createGestureDismissKeyboard()
     }
     
     // MARK: - Setups
+    
+    private func createGestureDismissKeyboard() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewDismiss))
+        view.addGestureRecognizer(gesture)
+    }
+    
+    
     
     private func setupHierarchy() {
         view.backgroundColor = .cyan
@@ -148,6 +156,12 @@ class ViewController: UIViewController {
     private func loginTapped() {
         print("Login tapped.")
     }
-
+    
+    @objc
+    private func viewDismiss() {
+        view.endEditing(true)
+    }
+    
+    
 }
 
