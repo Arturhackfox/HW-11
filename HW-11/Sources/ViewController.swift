@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     private lazy var userTextField: UITextField = {
         let tf = UITextField()
         tf.layer.cornerRadius = 20
-        tf.placeholder = "Enter your username.."
+        tf.placeholder = "Username.."
         tf.backgroundColor = .white
         
         tf.layer.shadowOpacity = 0.3
@@ -35,6 +35,30 @@ class ViewController: UIViewController {
         tf.leftViewMode = UITextField.ViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         let image = UIImage(systemName: "person")
+        imageView.image = image
+        tf.leftView = imageView
+        tf.tintColor = .gray
+        
+        
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        
+        return tf
+    }()
+    
+    private lazy var passwordTextField: UITextField = {
+        let tf = UITextField()
+        tf.layer.cornerRadius = 20
+        tf.placeholder = "Password.."
+        tf.backgroundColor = .white
+        
+        tf.layer.shadowOpacity = 0.3
+        tf.layer.shadowRadius = 10
+        tf.layer.shadowOffset = CGSize.zero
+        tf.layer.shadowColor = UIColor.black.cgColor
+        
+        tf.leftViewMode = UITextField.ViewMode.always
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let image = UIImage(systemName: "lock")
         imageView.image = image
         tf.leftView = imageView
         tf.tintColor = .gray
@@ -68,6 +92,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .cyan
         view.addSubview(loginLabel)
         view.addSubview(userTextField)
+        view.addSubview(passwordTextField)
     }
     
     private func setupLayout() {
@@ -79,7 +104,13 @@ class ViewController: UIViewController {
             userTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userTextField.heightAnchor.constraint(equalToConstant: 50),
             userTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            userTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+            userTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            
+            passwordTextField.topAnchor.constraint(equalTo: userTextField.bottomAnchor, constant: 50),
+            passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 50),
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
     }
     
