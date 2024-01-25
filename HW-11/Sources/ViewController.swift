@@ -156,6 +156,36 @@ class ViewController: UIViewController {
         return button
     }()
     
+    private lazy var twitterButton: UIButton = {
+        let button = UIButton()
+        var config = UIButton.Configuration.bordered()
+        
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.layer.shadowOpacity = 0.3
+        
+        if let originalImage = UIImage(named: "twitter"){
+            let resizedImage = resizeImage(originalImage, targetSize: CGSize(width: 40, height: 40))
+            
+            config.image = resizedImage
+        }
+        
+        config.baseBackgroundColor = .magenta
+        config.baseForegroundColor = .white
+        config.title = "Twitter"
+        config.cornerStyle = .capsule
+
+        button.imageView?.layer.cornerRadius = 20
+        button.imageView?.layer.masksToBounds = true
+        button.configuration = config
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(twitterTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
     // MARK: Inits
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -192,6 +222,7 @@ class ViewController: UIViewController {
         view.addSubview(forgotPasswordButton)
         view.addSubview(connectWithLabel)
         view.addSubview(faceBookButton)
+        view.addSubview(twitterButton)
     }
     
     private func setupLayout() {
@@ -229,7 +260,13 @@ class ViewController: UIViewController {
             faceBookButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             faceBookButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             faceBookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -200),
-            faceBookButton.heightAnchor.constraint(equalToConstant: 45)
+            faceBookButton.heightAnchor.constraint(equalToConstant: 45),
+            
+            twitterButton.topAnchor.constraint(equalTo: connectWithLabel.bottomAnchor, constant: 30),
+            twitterButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 200),
+            twitterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            twitterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            twitterButton.heightAnchor.constraint(equalToConstant: 45)
             
         ])
     }
@@ -249,6 +286,11 @@ class ViewController: UIViewController {
     @objc
     private func facebookTapped() {
         print("facebookTapped.")
+    }
+    
+    @objc
+    private func twitterTapped() {
+        print("twitterTapped.")
     }
     
     @objc
